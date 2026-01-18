@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Drawer with No Rounded Corners"),
+        ),
         drawer: Drawer(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
