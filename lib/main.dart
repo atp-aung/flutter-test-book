@@ -4,9 +4,20 @@ void main() {
   runApp(MyApp());
 }
 
+class Item {
+  final int id;
+  final String name;
+
+  Item({required this.id, required this.name});
+}
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final items = List<int>.generate(10, (i) => i);
+  final List<Item> items = [
+    Item(id: 1, name: 'Apple'),
+    Item(id: 2, name: 'Banana'),
+    Item(id: 3, name: 'Orange'),
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
