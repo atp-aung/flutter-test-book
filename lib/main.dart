@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final myList = List<int>.generate(10, (i) => i);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+      home: Scaffold(
+        body: ListView.builder(
+          itemCount: myList.length,
+          itemBuilder: (context, index) {
+            return Text("${myList[index]}");
+          },
+        ),
+      ),
+    );
   }
 }
 
