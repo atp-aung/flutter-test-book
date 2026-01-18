@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Counter());
+  runApp(const MyApp());
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
 
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }
-
-class Counter extends StatefulWidget {
-  const Counter(({super.key}) ;
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key}, {required this.title});
 
   final String title;
 
   @override
-  State<Counter> createState() => _CounterState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _CounterState extends State<Counter> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   // void _incrementCounter() {
