@@ -6,7 +6,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final myList = List<int>.generate(10, (i) => i);
+  final items = List<int>.generate(10, (i) => i);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
