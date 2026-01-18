@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final myList = List<int>.generate(10, (i) => i);
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: ListView.builder(
-          itemCount: myList.length,
-          itemBuilder: (context, index) {
-            return Text("${myList[index]}");
-          },
+        drawer: Drawer(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          child: ListView(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.people),
+                title: const Text("Item 1"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: const Icon(Icons.train),
+                title: const Text("Item 2"),
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
