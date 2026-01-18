@@ -41,26 +41,26 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+        // appBar: AppBar(
+        //   title: Text(widget.title),
+        // ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              print("You click Elevated Button...");
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Text("Elevated Button"),
+      child: ElevatedButton(
+        onPressed: () {
+          print("You click Elevated Button...");
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          //SizedBox(height: 20),
+        ),
+        child: Text("Elevated Button"),
+      ),
+      //SizedBox(height: 20),
 //his trailing comma makes auto-formatting nicer for build methods.
-        ));
+    ));
   }
 }
