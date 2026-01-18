@@ -12,9 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: ListView.builder(
-          itemCount: myList.length,
+          itemCount: items.length,
           itemBuilder: (context, index) {
-            return Text("${myList[index]}");
+            return ListTile(
+              key: ValueKey(items[index].id),
+              title: Text(items[index].name),
+            );
           },
         ),
       ),
