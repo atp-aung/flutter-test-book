@@ -1,41 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-class Counter extends ChangeNotifier {
-  int _count = 0;
-  int get count => _count;
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
-}
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Counter(),
-      child: MaterialApp(home: CounterPage()),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class _MyAppState extends State<MyApp> {
+  //final myList = List<int>.generate(100, (i) => i);
   @override
   Widget build(BuildContext context) {
-    final counter = Provider.of<Counter>(context);
-
-    return Scaffold(
-      body: Center(child: Text("Counter: ${counter.count}")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
-        child: Icon(Icons.add),
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
