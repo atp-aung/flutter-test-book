@@ -14,7 +14,7 @@ class Item {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final List<Item> items = [
-    Item(id: 1, name: 'Apple'),
+    Item(id: 1, name: 'aApple'),
     Item(id: 2, name: 'Banana'),
     Item(id: 3, name: 'Orange'),
   ];
