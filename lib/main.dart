@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
                 Tab(icon: Icon(Icons.directions_bike)),
               ],
             ),
-            title: const Text('Tabs in Flutter'),
+            title: const Text('sTabs in Flutter'),
           ),
           body: const TabBarView(
             children: [
