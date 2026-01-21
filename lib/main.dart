@@ -1,14 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-class Counter extends ChangeNotifier {
-  int _count = 0;
-  int get count => _count;
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
-}
 
 void main() {
   runApp(MyApp());
@@ -32,10 +22,27 @@ class CounterPage extends StatelessWidget {
     final counter = Provider.of<Counter>(context);
 
     return Scaffold(
-      body: Center(child: Text("sCounter: ${counter.count}")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
-        child: Icon(Icons.add),
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.directions_car)),
+                Tab(icon: Icon(Icons.directions_transit)),
+                Tab(icon: Icon(Icons.directions_bike)),
+              ],
+            ),
+            title: const Text('Tabs in Flutter'),
+          ),
+          body: const TabBarView(
+            children: [
+              Icon(Icons.directions_car),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+            ],
+          ),
+        ),
       ),
     );
   }
