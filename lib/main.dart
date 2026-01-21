@@ -32,7 +32,7 @@ class CounterPage extends StatelessWidget {
     final counter = Provider.of<Counter>(context);
 
     return Scaffold(
-      body: Center(child: Text("Counter: ${counter.count}")),
+      body: Center(child: Text("sCounter: ${counter.count}")),
       floatingActionButton: FloatingActionButton(
         onPressed: counter.increment,
         child: Icon(Icons.add),
