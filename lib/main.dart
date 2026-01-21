@@ -32,19 +32,16 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Second Route')),
+      appBar: AppBar(
+        title: Text("Profile Page"),
+      ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
+        child: Text("Welcome to the Profile Page!"),
       ),
     );
   }
