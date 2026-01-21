@@ -11,76 +11,70 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TextFieldDemo(),
+      home: EmailFormDemo(),
     );
   }
 }
 
-class TextFieldDemo extends StatefulWidget {
-  const TextFieldDemo({super.key});
+class EmailFormDemo extends StatefulWidget {
+  const EmailFormDemo({super.key});
 
   @override
-  State<TextFieldDemo> createState() => _TextFieldDemoState();
+  State<EmailFormDemo> createState() => _EmailFormDemoState();
 }
 
-class _TextFieldDemoState extends State<TextFieldDemo> {
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+class _EmailFormDemoState extends State<EmailFormDemo> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _email = "";
 
-  String _info = "";
-
-  @override
-  void dispose() {
-    _name.dispose();
-    _password.dispose();
-    super.dispose();
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Saved Email: $_email')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TextField Demo'),
+        title: const Text('Email Validation Demo'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _name,
-              decoration: const InputDecoration(
-                labelText: "Name",
-                hintText: "Enter name",
-                suffixIcon: Icon(Icons.person),
-                border: OutlineInputBorder(),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email cannot be empty';
+                  } else if (!value.contains('@')) {
+                    return 'Not a valid email format';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _email = value!;
+                },
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _password,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: "Password",
-                hintText: "Enter password",
-                suffixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: const Text('Submit'),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _info = "Name : ${_name.text}, Password : ${_password.text}";
-                });
-              },
-              child: const Text("Save"),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              _info,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
