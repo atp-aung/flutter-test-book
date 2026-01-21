@@ -4,66 +4,39 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDarkMode = false;
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RadioDemo(),
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class RadioDemo extends StatefulWidget {
-  const RadioDemo({super.key});
-
-  @override
-  State<RadioDemo> createState() => _RadioDemoState();
-}
-
-enum Gender { male, female, other }
-
-extension GenderExtension on Gender {
-  String get text {
-    switch (this) {
-      case Gender.male:
-        return 'Male';
-      case Gender.female:
-        return 'Female';
-      case Gender.other:
-        return 'Other';
-    }
-  }
-}
-
-class _RadioDemoState extends State<RadioDemo> {
-  Gender? _selectedOption;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Radio Button Demo'),
+      theme: ThemeData(
+        brightness: _isDarkMode ? Brightness.dark : Brightness.light,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: Gender.values
-              .map(
-                (option) => RadioListTile<Gender>(
-                  title: Text(option.text),
-                  value: option,
-                  groupValue: _selectedOption,
-                  onChanged: (Gender? value) {
-                    setState(() {
-                      _selectedOption = value;
-                    });
-                  },
-                ),
-              )
-              .toList(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Theme Switch Demo'),
+        ),
+        body: Center(
+          child: SwitchListTile(
+            title: const Text('Dark Mode'),
+            value: _isDarkMode,
+            onChanged: (bool newValue) {
+              setState(() {
+                _isDarkMode = newValue;
+              });
+            },
+            activeColor: Colors.blue,
+            secondary: const Icon(Icons.lightbulb),
+          ),
         ),
       ),
     );
