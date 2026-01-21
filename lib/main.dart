@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: FirstRoute()));
+  runApp(
+    MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
+    ),
+  );
 }
 
 class FirstRoute extends StatelessWidget {
