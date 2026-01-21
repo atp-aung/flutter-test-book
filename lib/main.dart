@@ -1,47 +1,55 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomeScreen(),
-        '/profile': (context) => ProfileScreen(),
-      },
-    ),
-  );
+  runApp(const MyApp());
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Screen"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text('Go to Profile Page'),
-          onPressed: () {
-            Navigator.pushNamed(context, '/profile');
-          },
-        ),
-      ),
+    return const MaterialApp(
+      home: CheckboxDemo(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class CheckboxDemo extends StatefulWidget {
+  const CheckboxDemo({super.key});
+
+  @override
+  State<CheckboxDemo> createState() => _CheckboxDemoState();
+}
+
+class _CheckboxDemoState extends State<CheckboxDemo> {
+  bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Page"),
+        title: const Text('Checkbox Demo'),
       ),
       body: Center(
-        child: Text("Welcome to the Profile Page!"),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Checkbox(
+              value: _isChecked,
+              onChanged: (bool? newValue) {
+                setState(() {
+                  _isChecked = newValue!;
+                });
+              },
+            ),
+            const Text(
+              'Accept Terms and Conditions',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
       ),
     );
   }
