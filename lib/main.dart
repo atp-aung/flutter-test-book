@@ -10,45 +10,60 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: CheckboxDemo(),
+      home: RadioDemo(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class CheckboxDemo extends StatefulWidget {
-  const CheckboxDemo({super.key});
+class RadioDemo extends StatefulWidget {
+  const RadioDemo({super.key});
 
   @override
-  State<CheckboxDemo> createState() => _CheckboxDemoState();
+  State<RadioDemo> createState() => _RadioDemoState();
 }
 
-class _CheckboxDemoState extends State<CheckboxDemo> {
-  bool _isChecked = false;
+enum Gender { male, female, other }
+
+extension GenderExtension on Gender {
+  String get text {
+    switch (this) {
+      case Gender.male:
+        return 'Male';
+      case Gender.female:
+        return 'Female';
+      case Gender.other:
+        return 'Other';
+    }
+  }
+}
+
+class _RadioDemoState extends State<RadioDemo> {
+  Gender? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Checkbox Demo'),
+        title: const Text('Radio Button Demo'),
       ),
-      body: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Checkbox(
-              value: _isChecked,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isChecked = newValue!;
-                });
-              },
-            ),
-            const Text(
-              'Accept Terms and Conditions',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: Gender.values
+              .map(
+                (option) => RadioListTile<Gender>(
+                  title: Text(option.text),
+                  value: option,
+                  groupValue: _selectedOption,
+                  onChanged: (Gender? value) {
+                    setState(() {
+                      _selectedOption = value;
+                    });
+                  },
+                ),
+              )
+              .toList(),
         ),
       ),
     );
