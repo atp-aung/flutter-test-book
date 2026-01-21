@@ -9,7 +9,7 @@ class FirstRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('sFirst Route')),
+      appBar: AppBar(title: const Text('First Route')),
       body: Center(
         child: ElevatedButton(
           child: const Text('Open route'),
