@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Counter(),
-      child: MaterialApp(home: CounterPage()),
-    );
-  }
-}
-
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    final counter = Provider.of<Counter>(context);
-
-    return Scaffold(
+    return MaterialApp(
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
