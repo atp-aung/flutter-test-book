@@ -24,12 +24,7 @@ class HomeScreen extends StatelessWidget {
         child: ElevatedButton(
           child: Text('Go to Profile Page'),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute<void>(
-            //     builder: (context) => const ProfileScreen(),
-            //   ),
-            // );
+            Navigator.pushNamed(context, '/profile');
           },
         ),
       ),
