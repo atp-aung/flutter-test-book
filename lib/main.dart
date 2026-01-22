@@ -22,23 +22,9 @@ class ContainerDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Container Widget Demo')),
-      body: Container(
-        height: 80,
-        width: 260,
-        color: Colors.blueGrey,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(top: 100),
-        transform: Matrix4.rotationZ(-0.25),
-        child: const Text(
-          "kyae",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: AppBar(title: const Text('image Demo')),
+      body: Image.network(
+          'https://pixabay.com/images/download/x-10066485_1920.jpg'),
     );
   }
 }
