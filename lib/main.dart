@@ -24,7 +24,7 @@ class ContainerDemo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('image Demo')),
       body: Image.network(
-          'https://flutter.dev/assets/homepage/carousel/slide_1-layer_0-6b7f8b61e2c1fdb3e2c3c1c8b9e9b9f2.png'),
+          'https://cdn.pixabay.com/photo/2023/09/25/20/38/lisbon-8275994_1280.jpg'),
     );
   }
 }
