@@ -28,7 +28,7 @@ class ContainerDemo extends StatelessWidget {
         ),
         body: Center(
             child: FadeInImage.assetNetwork(
-          placeholder: 'assets/loading.gif',
+          placeholder: '/presee.jpg',
           image:
               'https://images.pexels.com/photos/34295250/pexels-photo-34295250.jpeg',
         )),
