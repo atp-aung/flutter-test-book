@@ -21,18 +21,18 @@ class ContainerDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("titletext"),
-        ),
-        body: Center(
-            child: FadeInImage.assetNetwork(
-          placeholder: '/presee.jpg',
-          image:
-              'https://images.pexels.com/photos/34295250/pexels-photo-34295250.jpeg',
-        )),
-      ),
-    );
+    // return MaterialApp(
+    //   home: Scaffold(
+    //     appBar: AppBar(
+    //       title: const Text("titletext"),
+    //     ),
+    //     body: Center(
+    //         child: FadeInImage.assetNetwork(
+    //       placeholder: '/presee.jpg',
+    //       image:
+    //           'https://images.pexels.com/photos/34295250/pexels-photo-34295250.jpeg',
+    //     )),
+    //   ),
+    // );
   }
 }
