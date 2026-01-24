@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,23 @@ class ContainerDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Fade in images")),
+        body: Stack(
+          children: [
+            const Center(child: CircularProgressIndicator()),
+            Center(
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image:
+                    'https://cdn.pixabay.com/photo/2020/03/25/12/41/beach-4967176_1280.jpg',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
     // return MaterialApp(
     //   home: Scaffold(
     //     appBar: AppBar(
