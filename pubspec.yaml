@@ -29,8 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    assets:
-      - assets/lodd.jpg
   provider: ^6.0.5
   transparent_image: ^2.0.1
   # The following adds the Cupertino Icons font to your application.
@@ -57,7 +55,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  assets:
+    - assets/lodd.gif
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

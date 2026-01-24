@@ -26,7 +26,7 @@ class ContainerDemo extends StatelessWidget {
         appBar: AppBar(title: const Text('Fade in images')),
         body: Center(
           child: FadeInImage.assetNetwork(
-            placeholder: 'assets/loading.gif',
+            placeholder: 'assets/lodd.gif',
             image:
                 'https://images.pexels.com/photos/34295250/pexels-photo-34295250.jpeg',
           ),
