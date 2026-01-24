@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -9,31 +8,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: VideoPlayerDemo(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class VideoPlayerDemo extends StatefulWidget {
+  const VideoPlayerDemo({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<VideoPlayerDemo> createState() => _VideoPlayerDemoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _VideoPlayerDemoState extends State<VideoPlayerDemo> {
   late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -41,12 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-      ),
-    );
-
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
+    )..initialize().then((_) {
+        setState(() {});
+      });
   }
 
   @override
@@ -57,6 +47,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Play / Pause Video'),
+      ),
+      body: Center(
+        child: _controller.value.isInitialized
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      });
+                    },
+                    child: Text(
+                      _controller.value.isPlaying ? 'Pause' : 'Play',
+                    ),
+                  ),
+                ],
+              )
+            : const CircularProgressIndicator(),
+      ),
+    );
   }
 }
