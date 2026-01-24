@@ -21,10 +21,18 @@ class ContainerDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('image Demo')),
-      body: Image.network(
-          'https://cdn.pixabay.com/photo/2023/09/25/20/38/lisbon-8275994_1280.jpg'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("titletext"),
+        ),
+        body: Center(
+            child: FadeInImage.assetNetwork(
+          placeholder: 'assets/loading.gif',
+          image:
+              'https://images.pexels.com/photos/34295250/pexels-photo-34295250.jpeg',
+        )),
+      ),
     );
   }
 }
