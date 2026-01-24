@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    assets:
+      - assets/lodd.jpg
   provider: ^6.0.5
   transparent_image: ^2.0.1
   # The following adds the Cupertino Icons font to your application.
