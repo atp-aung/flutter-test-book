@@ -31,6 +31,16 @@ class _VideoPlayerDemoState extends State<VideoPlayerDemo> {
   void initState() {
     super.initState();
 
+    // _controller = VideoPlayerController.file('/path/to/your/video.mp4' as File)
+    //   ..initialize().then((_) {
+    //     setState(() {});
+    //   });
+
+    // _controller = VideoPlayerController.asset(
+    //   'assets/videos/sample_video.mp4',
+    // )..initialize().then((_) {
+    //     setState(() {});
+    //   });
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(
           'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
