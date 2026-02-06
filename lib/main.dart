@@ -23,7 +23,7 @@ class ContainerDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Fade in images')),
+        appBar: AppBar(title: const Text('Fade in image')),
         body: Center(
           child: FadeInImage.assetNetwork(
             placeholder: '../assets/lodd.gif',
