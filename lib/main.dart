@@ -29,15 +29,16 @@ class ContainerDemo extends StatelessWidget {
           children: [
             const Center(child: CircularProgressIndicator()),
             Center(
-              // child: FadeInImage.assetNetwork(
-              //     placeholder: String.fromCharCode(0xe3b0),
-              //     image:
-              //         'https://cdn.pixabay.com/photo/2020/03/25/12/41/beach-4967176_1280.jpg'),
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image:
-                    'https://cdn.pixabay.com/photo/2020/03/25/12/41/beach-4967176_1280.jpg',
-              ),
+              child: FadeInImage.assetNetwork(
+                  //placeholder: String.fromCharCode(0xe3b0),
+                  placeholder: '../bbb/hhh.jpg',
+                  image:
+                      'https://cdn.pixabay.com/photo/2020/03/25/12/41/beach-4967176_1280.jpg'),
+              // child: FadeInImage.memoryNetwork(
+              //   placeholder: kTransparentImage,
+              //   image:
+              //       'https://cdn.pixabay.com/photo/2020/03/25/12/41/beach-4967176_1280.jpg',
+              // ),
             ),
           ],
         ),
