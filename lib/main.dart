@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
               // Top Animated Container
               AnimatedContainer(
                 color: b ? Colors.tealAccent : Colors.blueAccent,
-                height: b ? 400.0 : 200.0,
+                height: b ? 300.0 : 100.0,
                 duration: const Duration(seconds: 1),
                 child: Center(
                   child: Text(
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
               // Bottom Animated Container
               AnimatedContainer(
                 color: b ? Colors.redAccent : Colors.orangeAccent,
-                height: b ? 200.0 : 400.0,
+                height: b ? 100.0 : 300.0,
                 duration: const Duration(seconds: 1),
                 child: Center(
                   child: Text(
