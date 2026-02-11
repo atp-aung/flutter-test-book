@@ -1,93 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_splash/flutter_animated_splash.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-const String _imageTag = 'my-hero-image';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Small Hero')),
-      body: Center(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return const DetailScreen();
-                },
-              ),
-            );
-          },
-
-          // Hero on first screen
-          child: Hero(
-            tag: _imageTag,
-            child: Container(
-              width: 100.0,
-              height: 100.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
-                color: Colors.blueAccent.shade700,
-              ),
-              child: const Icon(
-                Icons.camera_alt,
-                color: Colors.white,
-                size: 40,
-              ),
-            ),
-          ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.dark),
+      home: AnimatedSplash(
+        type: Transition.fade,
+        curve: Curves.fastEaseInToSlowEaseOut,
+        backgroundColor: Colors.black,
+        durationInSeconds: 3,
+        navigator: const HomePage(),
+        child: const FlutterLogo(
+          size: 200,
+          textColor: Colors.blue,
         ),
       ),
     );
   }
 }
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Large Hero')),
-      body: Center(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-
-          // Hero with SAME tag
-          child: Hero(
-            tag: _imageTag,
-            child: Container(
-              width: 300.0,
-              height: 300.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Colors.redAccent,
-              ),
-              child: const Icon(
-                Icons.camera_alt,
-                color: Colors.white,
-                size: 150,
-              ),
-            ),
+      appBar: AppBar(
+        title: const Text("My Application"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+      ),
+      body: const Center(
+        child: Text(
+          "Welcome to Flutter",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
           ),
         ),
       ),
