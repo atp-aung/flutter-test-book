@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         durationInSeconds: 3,
         navigator: const HomePage(),
         child: const FlutterLogo(
-          size: 100,
+          size: 200,
           textColor: Colors.blue,
         ),
       ),
