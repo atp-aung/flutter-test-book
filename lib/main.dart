@@ -1,76 +1,94 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+const String _imageTag = 'my-hero-image';
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: HomeScreen(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  bool b = false;
-
-  void _changeMode() {
-    setState(() {
-      b = !b;
-    });
-  }
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Animated Container")),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Top Animated Container
-              AnimatedContainer(
-                color: b ? Colors.tealAccent : Colors.blueAccent,
-                height: b ? 300.0 : 100.0,
-                duration: const Duration(seconds: 1),
-                child: Center(
-                  child: Text(
-                    'Top',
-                    style: TextStyle(
-                      color: b ? Colors.black : Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w200,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Small Hero')),
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return const DetailScreen();
+                },
               ),
+            );
+          },
 
-              // Bottom Animated Container
-              AnimatedContainer(
-                color: b ? Colors.redAccent : Colors.orangeAccent,
-                height: b ? 100.0 : 300.0,
-                duration: const Duration(seconds: 1),
-                child: Center(
-                  child: Text(
-                    'Bottom',
-                    style: TextStyle(
-                      color: b ? Colors.black : Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w200,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+          // Hero on first screen
+          child: Hero(
+            tag: _imageTag,
+            child: Container(
+              width: 100.0,
+              height: 100.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.blueAccent.shade700,
               ),
-            ],
+              child: const Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+                size: 40,
+              ),
+            ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _changeMode,
-          child: const Icon(Icons.change_circle),
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  const DetailScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Large Hero')),
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+
+          // Hero with SAME tag
+          child: Hero(
+            tag: _imageTag,
+            child: Container(
+              width: 300.0,
+              height: 300.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.redAccent,
+              ),
+              child: const Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+                size: 150,
+              ),
+            ),
+          ),
         ),
       ),
     );
