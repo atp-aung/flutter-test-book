@@ -1,80 +1,76 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: EmailFormDemo(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class EmailFormDemo extends StatefulWidget {
-  const EmailFormDemo({super.key});
+class _MyAppState extends State<MyApp> {
+  bool b = false;
 
-  @override
-  State<EmailFormDemo> createState() => _EmailFormDemoState();
-}
-
-class _EmailFormDemoState extends State<EmailFormDemo> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = "";
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Saved Email: $_email')),
-      );
-    }
+  void _changeMode() {
+    setState(() {
+      b = !b;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Email Validation Demo'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Animated Container")),
+        body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Email',
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
+              // Top Animated Container
+              AnimatedContainer(
+                color: b ? Colors.tealAccent : Colors.blueAccent,
+                height: b ? 400.0 : 200.0,
+                duration: const Duration(seconds: 1),
+                child: Center(
+                  child: Text(
+                    'Top',
+                    style: TextStyle(
+                      color: b ? Colors.black : Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w200,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Email cannot be empty';
-                  } else if (!value.contains('@')) {
-                    return 'Not a valid email format';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _email = value!;
-                },
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: const Text('Submit'),
+
+              // Bottom Animated Container
+              AnimatedContainer(
+                color: b ? Colors.redAccent : Colors.orangeAccent,
+                height: b ? 200.0 : 400.0,
+                duration: const Duration(seconds: 1),
+                child: Center(
+                  child: Text(
+                    'Bottom',
+                    style: TextStyle(
+                      color: b ? Colors.black : Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w200,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _changeMode,
+          child: const Icon(Icons.change_circle),
         ),
       ),
     );
